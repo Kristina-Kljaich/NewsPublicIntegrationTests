@@ -3,8 +3,7 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [ push ]
 jobs:
   container-job:
-    runs-on: ubuntu-18.04
-    container: node:10.18-jessie
+    runs-on: ubuntu-latest
     services:
       # Label used to access the service container
       postgres:
