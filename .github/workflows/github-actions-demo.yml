@@ -8,16 +8,16 @@ jobs:
       # Label used to access the service container
       postgres:
         # Docker Hub image
-        image: postgres
-        # Provide the password for postgres
+        image: postgres:12.2
         env:
-          POSTGRES_PASSWORD: postgres
-        # Set health checks to wait until postgres has started
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: pass
+          POSTGRES_DB: spring-jwt
+        ports:
+          # will assign a random free host port
+          - 5432/tcp
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
 #      - name: Download Maven
 #        run: |
