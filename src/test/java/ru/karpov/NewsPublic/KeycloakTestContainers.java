@@ -18,11 +18,13 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import dasniko.testcontainers.keycloak.KeycloakContainer;
+import org.testcontainers.junit.jupiter.Container;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public abstract class KeycloakTestContainers {
 
-    protected static final KeycloakContainer keycloak = new KeycloakContainer()
+    @Container
+    protected static final KeycloakContainer keycloak = new KeycloakContainer("quay.io/keycloak/keycloak:19.0.1")
             .withRealmImportFile("keycloack/realm-export.json");
 
     @BeforeAll
