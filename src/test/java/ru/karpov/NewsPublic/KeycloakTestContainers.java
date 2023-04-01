@@ -33,7 +33,7 @@ import javax.annotation.PostConstruct;
 @Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public abstract class KeycloakTestContainers {
-    protected static KeycloakToken userTokens;
+    protected static String userTokens;
 
 //    @Container
 //    protected static final KeycloakContainer keycloak = new KeycloakContainer("quay.io/keycloak/keycloak:21.0.2")
@@ -52,11 +52,11 @@ public abstract class KeycloakTestContainers {
     public static void setUp() {
         //keycloak.start();
         WebClient webClient = WebClient.builder()
-                .baseUrl("http://localhost:8180" + "/auth/realms/SAT/protocol/openid-connect/token")
+                .baseUrl("http://localhost:8180/auth/realms/SAT/protocol/openid-connect/token")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
                 .build();
 
-        userTokens = authenticateWith("janedoe", "s3cr3t", webClient);
+        userTokens = getJaneDoeBearer();
     }
     private static KeycloakToken authenticateWith(String username, String password, WebClient webClient) {
         return webClient
@@ -75,36 +75,36 @@ public abstract class KeycloakTestContainers {
 //        keycloak.stop();
 //    }
 
-//    protected String getJaneDoeBearer() {
-//        try {
-//            URI authorizationURI = new URIBuilder(keycloak.getAuthServerUrl() + "/realms/SAT/protocol/openid-connect/token").build();
-//            WebClient webclient = WebClient.builder()
-//                    .build();
-//            MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
-//            formData.put("grant_type", Collections.singletonList("password"));
-//            formData.put("client_id", Collections.singletonList("NewsPublic"));
-//            formData.put("username", Collections.singletonList("janedoe"));
-//            formData.put("password", Collections.singletonList("s3cr3t"));
-//
-//            String result = webclient.post()
-//                    .uri(authorizationURI)
-//                    .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-//                    .body(BodyInserters.fromFormData(formData))
-//                    .retrieve()
-//                    .bodyToMono(String.class)
-//                    .block();
-//
-//            JacksonJsonParser jsonParser = new JacksonJsonParser();
-//
-//            return "Bearer " + jsonParser.parseMap(result)
-//                    .get("access_token")
-//                    .toString();
-//        } catch (URISyntaxException e) {
-//            System.out.println("Can't obtain an access token from Keycloak!" + e.toString());
-//        }
-//
-//        return null;
-//    }
+    protected static String getJaneDoeBearer() {
+        try {
+            URI authorizationURI = new URIBuilder("http://localhost:8180/auth/realms/SAT/protocol/openid-connect/token").build();
+            WebClient webclient = WebClient.builder()
+                    .build();
+            MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
+            formData.put("grant_type", Collections.singletonList("password"));
+            formData.put("client_id", Collections.singletonList("NewsPublic"));
+            formData.put("username", Collections.singletonList("janedoe"));
+            formData.put("password", Collections.singletonList("s3cr3t"));
+
+            String result = webclient.post()
+                    .uri(authorizationURI)
+                    .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                    .body(BodyInserters.fromFormData(formData))
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    .block();
+
+            JacksonJsonParser jsonParser = new JacksonJsonParser();
+
+            return "Bearer " + jsonParser.parseMap(result)
+                    .get("access_token")
+                    .toString();
+        } catch (URISyntaxException e) {
+            System.out.println("Can't obtain an access token from Keycloak!" + e.toString());
+        }
+
+        return null;
+    }
     public static class KeycloakToken {
 
         public final String accessToken;
