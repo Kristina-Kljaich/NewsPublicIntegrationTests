@@ -14,7 +14,7 @@ class KeycloakUserTest extends KeycloakTestContainers {
     @Test
     void givenAuthenticatedUser_whenGetMe_shouldReturnMyInfo() {
 
-        given().header("Authorization", getJaneDoeBearer())
+        given().header("Authorization", userTokens.accessToken)
                 .when()
                 .get("/users/me")
                 .then()
