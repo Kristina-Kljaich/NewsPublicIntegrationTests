@@ -47,10 +47,6 @@ public abstract class KeycloakTestContainers {
     public void init() {
         RestAssured.baseURI = "http://localhost:" + port;
     }
-    @DynamicPropertySource
-    static void registerResourceServerIssuerProperty(DynamicPropertyRegistry registry) {
-        registry.add("spring.security.oauth2.resourceserver.jwt.issuer-uri", () -> keycloak.getAuthServerUrl() + "/realms/SAT");
-    }
 
     protected String getJaneDoeBearer() {
         try {
