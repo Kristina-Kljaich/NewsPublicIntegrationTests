@@ -27,7 +27,7 @@ jobs:
           KEYCLOAK_PASSWORD: admin
 #          KEYCLOAK_IMPORT: /opt/jboss/keycloak/bin/keycloak_export_dir/realm-export.json
         ports:
-          - "8080:8080"
+          - 8082:8080
     steps:
 #      - name: Download Maven
 #        run: |
