@@ -4,11 +4,13 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Collections;
 
+import io.restassured.RestAssured;
 import org.apache.http.client.utils.URIBuilder;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -20,12 +22,17 @@ import org.springframework.web.reactive.function.client.WebClient;
 import dasniko.testcontainers.keycloak.KeycloakContainer;
 import org.testcontainers.junit.jupiter.Container;
 
+import javax.annotation.PostConstruct;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public abstract class KeycloakTestContainers {
 
     @Container
     protected static final KeycloakContainer keycloak = new KeycloakContainer("quay.io/keycloak/keycloak:21.0.2")
             .withRealmImportFile("keycloack/realm-export.json");
+
+    @LocalServerPort
+    private int port;
 
     @BeforeAll
     public static void setUp() {
@@ -34,6 +41,11 @@ public abstract class KeycloakTestContainers {
     @AfterAll
     public static void tearDown() {
         keycloak.stop();
+    }
+
+    @PostConstruct
+    public void init() {
+        RestAssured.baseURI = "http://localhost:" + port;
     }
     @DynamicPropertySource
     static void registerResourceServerIssuerProperty(DynamicPropertyRegistry registry) {
@@ -65,7 +77,7 @@ public abstract class KeycloakTestContainers {
                     .get("access_token")
                     .toString();
         } catch (URISyntaxException e) {
-            System.out.println("Can't obtain an access token from Keycloak!" + e.toString());
+            throw new Exception("Can't obtain an access token from Keycloak!" + e.toString());
         }
 
         return null;
