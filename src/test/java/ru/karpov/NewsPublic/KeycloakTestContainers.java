@@ -31,7 +31,7 @@ public abstract class KeycloakTestContainers {
 
     @Container
     protected static final KeycloakContainer keycloak = new KeycloakContainer("quay.io/keycloak/keycloak:21.0.2")
-            .withRealmImportFile("keycloack/realm-export.json");
+            .withRealmImportFile("keycloack/realm-export.json").withContextPath("/auth/");
 
 
     @BeforeAll
