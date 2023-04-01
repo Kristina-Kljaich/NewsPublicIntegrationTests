@@ -52,7 +52,7 @@ public abstract class KeycloakTestContainers {
     public static void setUp() {
         //keycloak.start();
         WebClient webClient = WebClient.builder()
-                .baseUrl("http://localhost:8082" + "/auth/realms/SAT/protocol/openid-connect/token")
+                .baseUrl("http://localhost:8180" + "/auth/realms/SAT/protocol/openid-connect/token")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
                 .build();
 
