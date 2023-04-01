@@ -24,7 +24,7 @@ jobs:
           - " -b 0.0.0.0"
         volumes:
           - "./keycloak/realm-export.json:/opt/jboss/keycloak/bin/keycloak_export_dir/realm-export.json"
-        environment:
+        env:
           KEYCLOAK_USER: admin
           KEYCLOAK_PASSWORD: admin
           KEYCLOAK_IMPORT: /opt/jboss/keycloak/bin/keycloak_export_dir/realm-export.json
