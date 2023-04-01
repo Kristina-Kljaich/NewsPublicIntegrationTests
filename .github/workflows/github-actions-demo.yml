@@ -18,6 +18,19 @@ jobs:
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+      keycloak:
+        image: jboss/keycloak:8.0.1
+        command:
+          - " -b 0.0.0.0"
+        container_name: "keycloak"
+        volumes:
+          - "./keycloak/realm-export.json:/opt/jboss/keycloak/bin/keycloak_export_dir/realm-export.json"
+        environment:
+          KEYCLOAK_USER: admin
+          KEYCLOAK_PASSWORD: admin
+          KEYCLOAK_IMPORT: /opt/jboss/keycloak/bin/keycloak_export_dir/realm-export.json
+        ports:
+          - "8080:8080"
     steps:
 #      - name: Download Maven
 #        run: |
