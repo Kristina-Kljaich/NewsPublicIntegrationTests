@@ -64,7 +64,7 @@ public abstract class KeycloakTestContainers {
             MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
             formData.put("grant_type", Collections.singletonList("password"));
             formData.put("client_id", Collections.singletonList("NewsPublic"));
-            formData.put("username", Collections.singletonList("jane.doe@baeldung.com"));
+            formData.put("username", Collections.singletonList("janedoe"));
             formData.put("password", Collections.singletonList("s3cr3t"));
 
             String result = webclient.post()
