@@ -20,8 +20,8 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
       keycloak:
         image: quay.io/keycloak/keycloak:latest
-#        volumes:
-#          - ./keycloak/realm-export.json:/opt/jboss/keycloak/bin/keycloak_export_dir/realm-export.json
+        volumes:
+          - ./keycloak/realm-export.json:/opt/jboss/keycloak/bin/keycloak_export_dir/realm-export.json
         env:
           KEYCLOAK_USER: admin
           KEYCLOAK_PASSWORD: admin
@@ -29,7 +29,8 @@ jobs:
           KC_DB_USERNAME: postgres
           KC_DB_PASSWORD: postgres
           KC_DB_URL: jdbc:postgresql://localhost:5432/postgres
-#          KEYCLOAK_IMPORT: /opt/jboss/keycloak/bin/keycloak_export_dir/realm-export.json
+          JAVA_OPTS_APPEND: "-Dkeycloak.profile.feature.upload_scripts=enabled"
+          KEYCLOAK_IMPORT: /opt/jboss/keycloak/bin/keycloak_export_dir/realm-export.json
         ports:
           - 8082:8082
     steps:
