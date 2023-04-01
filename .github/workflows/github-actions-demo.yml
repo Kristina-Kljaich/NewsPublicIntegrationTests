@@ -20,12 +20,12 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
       keycloak:
         image: quay.io/keycloak/keycloak:latest
-        volumes:
-          - ./keycloak/realm-export.json:/opt/jboss/keycloak/bin/keycloak_export_dir/realm-export.json
+#        volumes:
+#          - ./keycloak/realm-export.json:/opt/jboss/keycloak/bin/keycloak_export_dir/realm-export.json
         env:
           KEYCLOAK_USER: admin
           KEYCLOAK_PASSWORD: admin
-          KEYCLOAK_IMPORT: /opt/jboss/keycloak/bin/keycloak_export_dir/realm-export.json
+#          KEYCLOAK_IMPORT: /opt/jboss/keycloak/bin/keycloak_export_dir/realm-export.json
         ports:
           - "8080:8080"
     steps:
