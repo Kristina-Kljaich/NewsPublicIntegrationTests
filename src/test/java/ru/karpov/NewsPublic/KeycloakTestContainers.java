@@ -24,7 +24,7 @@ import org.testcontainers.junit.jupiter.Container;
 public abstract class KeycloakTestContainers {
 
     @Container
-    protected static final KeycloakContainer keycloak = new KeycloakContainer("quay.io/keycloak/keycloak:19.0.1")
+    protected static final KeycloakContainer keycloak = new KeycloakContainer("quay.io/keycloak/keycloak:21.0.2")
             .withRealmImportFile("keycloack/realm-export.json");
 
     @BeforeAll
