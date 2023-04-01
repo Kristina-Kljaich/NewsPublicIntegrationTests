@@ -48,7 +48,7 @@ public abstract class KeycloakTestContainers {
 
     @PostConstruct
     public void init() {
-        RestAssured.baseURI = "http://172.17.0.2";
+        RestAssured.baseURI = "http://172.17.0.1";
         RestAssured.port = port;
     }
 
