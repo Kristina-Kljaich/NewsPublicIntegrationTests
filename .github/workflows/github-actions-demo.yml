@@ -21,7 +21,7 @@ jobs:
       keycloak:
         image: quay.io/keycloak/keycloak:latest
         volumes:
-          - "./keycloak/realm-export.json:/opt/jboss/keycloak/bin/keycloak_export_dir/realm-export.json"
+          - ./keycloak/realm-export.json:/opt/jboss/keycloak/bin/keycloak_export_dir/realm-export.json
         env:
           KEYCLOAK_USER: admin
           KEYCLOAK_PASSWORD: admin
