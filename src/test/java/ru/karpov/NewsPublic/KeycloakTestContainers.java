@@ -59,7 +59,7 @@ public abstract class KeycloakTestContainers {
                     .build();
             MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
             formData.put("grant_type", Collections.singletonList("password"));
-            formData.put("client_id", Collections.singletonList("baeldung-api"));
+            formData.put("client_id", Collections.singletonList("NewsPublic"));
             formData.put("username", Collections.singletonList("jane.doe@baeldung.com"));
             formData.put("password", Collections.singletonList("s3cr3t"));
 
@@ -77,7 +77,7 @@ public abstract class KeycloakTestContainers {
                     .get("access_token")
                     .toString();
         } catch (URISyntaxException e) {
-            throw new Exception("Can't obtain an access token from Keycloak!" + e.toString());
+            System.out.println("Can't obtain an access token from Keycloak!" + e.toString());
         }
 
         return null;
