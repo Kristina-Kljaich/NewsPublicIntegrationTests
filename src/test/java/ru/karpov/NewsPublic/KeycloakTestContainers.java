@@ -29,6 +29,7 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import javax.annotation.PostConstruct;
+import java.time.Duration;
 
 @Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -51,24 +52,12 @@ public abstract class KeycloakTestContainers {
     @BeforeAll
     public static void setUp() {
         //keycloak.start();
-        WebClient webClient = WebClient.builder()
-                .baseUrl("http://localhost:8180/auth/realms/SAT/protocol/openid-connect/token")
-                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                .build();
+//        WebClient webClient = WebClient.builder()
+//                .baseUrl("http://localhost:8180/auth/realms/SAT/protocol/openid-connect/token")
+//                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+//                .build();
 
         userTokens = getJaneDoeBearer();
-    }
-    private static KeycloakToken authenticateWith(String username, String password, WebClient webClient) {
-        return webClient
-                .post()
-                .body(BodyInserters.fromFormData("grant_type", "password")
-                        .with("client_id", "NewsPublic")
-                        .with("username", username)
-                        .with("password", password)
-                )
-                .retrieve()
-                .bodyToMono(KeycloakToken.class)
-                .block();
     }
 //    @AfterAll
 //    public static void tearDown() {
@@ -92,7 +81,7 @@ public abstract class KeycloakTestContainers {
                     .body(BodyInserters.fromFormData(formData))
                     .retrieve()
                     .bodyToMono(String.class)
-                    .block();
+                    .block(Duration.ofSeconds(5));
 
             JacksonJsonParser jsonParser = new JacksonJsonParser();
 
