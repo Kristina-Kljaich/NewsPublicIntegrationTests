@@ -31,8 +31,8 @@ jobs:
           KC_DB_URL: jdbc:postgresql://localhost:5432/postgres
           JAVA_OPTS_APPEND: "-Dkeycloak.profile.feature.upload_scripts=enabled"
           KEYCLOAK_IMPORT: /tmp/realm-export.json
-        ports:
-          - 8084:8084
+#        ports:
+#          - 8082:8082
     steps:
 #      - name: Download Maven
 #        run: |
