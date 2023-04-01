@@ -43,13 +43,9 @@ public abstract class KeycloakTestContainers {
         keycloak.stop();
     }
 
-    @LocalServerPort
-    private int port;
-
     @PostConstruct
     public void init() {
-        RestAssured.baseURI = "http://172.17.0.1";
-        RestAssured.port = port;
+        RestAssured.baseURI = "http://localhost:32770";
     }
 
     @DynamicPropertySource
