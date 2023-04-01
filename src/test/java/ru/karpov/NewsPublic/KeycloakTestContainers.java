@@ -21,9 +21,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import dasniko.testcontainers.keycloak.KeycloakContainer;
 import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import javax.annotation.PostConstruct;
 
+@Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public abstract class KeycloakTestContainers {
 
@@ -41,10 +43,21 @@ public abstract class KeycloakTestContainers {
         keycloak.stop();
     }
 
+    @LocalServerPort
+    private int port;
+
     @PostConstruct
     public void init() {
-        int port = 8080;
-        RestAssured.baseURI = "http://localhost:" + port;
+        RestAssured.baseURI = "http://localhost";
+        RestAssured.port = port;
+    }
+
+    @DynamicPropertySource
+    static void jwtValidationProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.security.oauth2.resourceserver.jwt.issuer-uri",
+                () -> keycloak.getAuthServerUrl() + "/realms/SAT");
+        registry.add("spring.security.oauth2.resourceserver.jwt.jwk-set-uri",
+                () -> keycloak.getAuthServerUrl() + "/realms/SAT/protocol/openid-connect/certs");
     }
 
     protected String getJaneDoeBearer() {
