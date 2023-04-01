@@ -31,8 +31,6 @@ public abstract class KeycloakTestContainers {
     protected static final KeycloakContainer keycloak = new KeycloakContainer("quay.io/keycloak/keycloak:21.0.2")
             .withRealmImportFile("keycloack/realm-export.json");
 
-    @LocalServerPort
-    private int port;
 
     @BeforeAll
     public static void setUp() {
@@ -45,6 +43,7 @@ public abstract class KeycloakTestContainers {
 
     @PostConstruct
     public void init() {
+        int port = 32770;
         RestAssured.baseURI = "http://localhost:" + port;
     }
 
