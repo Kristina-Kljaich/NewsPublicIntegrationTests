@@ -22,7 +22,6 @@ jobs:
         image: jboss/keycloak:8.0.1
         command:
           - " -b 0.0.0.0"
-        container_name: "keycloak"
         volumes:
           - "./keycloak/realm-export.json:/opt/jboss/keycloak/bin/keycloak_export_dir/realm-export.json"
         environment:
