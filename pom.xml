@@ -114,6 +114,41 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.tngtech.keycloakmock</groupId>
+			<artifactId>mock</artifactId>
+			<scope>test</scope>
+			<version>0.11.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.c4-soft.springaddons</groupId>
+			<artifactId>spring-addons-oauth2-test</artifactId>
+			<version>6.1.0</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+
+
+		<!-- https://mvnrepository.com/artifact/com.tngtech.keycloakmock/mock-junit5 -->
+		<dependency>
+			<groupId>com.tngtech.keycloakmock</groupId>
+			<artifactId>mock-junit5</artifactId>
+			<scope>test</scope>
+			<version>0.11.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<scope>test</scope>
+			<version>1.13.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.codeborne</groupId>
+			<artifactId>selenide</artifactId>
+			<version>6.4.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>testcontainers</artifactId>
 			<version>1.16.3</version>
