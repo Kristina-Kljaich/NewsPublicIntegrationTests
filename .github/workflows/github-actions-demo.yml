@@ -34,14 +34,6 @@ jobs:
 #        ports:
 #          - 8180:8180
     steps:
-#      - name: Download Maven
-#        run: |
-#          curl -sL https://www-eu.apache.org/dist/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.zip -o maven.zip
-#          apt-get -y install unzip
-#          unzip -d /usr/share maven.zip
-#          rm maven.zip
-#          ln -s /usr/share/apache-maven-3.9.1/bin/mvn /usr/bin/mvn
-#          echo "M2_HOME=/usr/share/apache-maven-3.9.1" | tee -a /etc/environment
       - name: Check conn 1
         run: netstat -lnp
       - uses: actions/checkout@v3
