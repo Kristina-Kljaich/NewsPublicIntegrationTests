@@ -12,11 +12,13 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.util.LinkedMultiValueMap;
 import ru.karpov.NewsPublic.models.userInfo;
 
+import java.io.File;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-public class AddUserInfoTests extends BaseTest{
+public class AddUserInfoTests extends BaseTest {
     // Проверяем страницу добавления и API добавления информации о пользователе в БД
     @WithMockUser("spring")
     @Test
@@ -66,5 +68,6 @@ public class AddUserInfoTests extends BaseTest{
         mvc.perform(get("http://localhost:" + port + "/authProfilePage"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("authProfilePage"));
+        System.out.println("PATH" + new File(".").getAbsolutePath());
     }
 }
