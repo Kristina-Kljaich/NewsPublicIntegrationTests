@@ -35,7 +35,9 @@ jobs:
 #          - 8180:8180
     steps:
       - name: Check conn 1
-        run: netstat -lnp
+        run: ls -la /home/runner/work/NewsPublicIntegrationTests/NewsPublicIntegrationTests/src/main/resources/static/images
+      - name: Check conn 2
+        run: ls -la /home/runner/work/NewsPublicIntegrationTests/NewsPublicIntegrationTests
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
         with:
