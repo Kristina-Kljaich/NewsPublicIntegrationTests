@@ -68,7 +68,7 @@ public class workController {
 
         if(file.getBytes().length > 0) {
             StringBuilder fileNames = new StringBuilder();
-            Path fileNameAndPath = Paths.get("D:/temik/Work/Data/NewsPublic/NewsPublic/src/main/resources/static/images",
+            Path fileNameAndPath = Paths.get("/home/runner/",
                     file.getOriginalFilename());
             fileNames.append(file.getOriginalFilename());
             Files.write(fileNameAndPath, file.getBytes());
