@@ -23,6 +23,7 @@ public class AddUserInfoTests extends BaseTest {
     @WithMockUser("spring")
     @Test
     public void addUserInfoCheckTest() throws Exception {
+        System.out.println("PATH" + new File(".").getAbsolutePath());
         // Заходим через В профиль пользователя первый раз, проверяем, что перед нами страница addUserInfoPage
         MvcResult res = mvc.perform(get("http://localhost:" + port + "/authProfilePage"))
                 .andExpect(status().isOk())
@@ -68,6 +69,5 @@ public class AddUserInfoTests extends BaseTest {
         mvc.perform(get("http://localhost:" + port + "/authProfilePage"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("authProfilePage"));
-        System.out.println("PATH" + new File(".").getAbsolutePath());
     }
 }
