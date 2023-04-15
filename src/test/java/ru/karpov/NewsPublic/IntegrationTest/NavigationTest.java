@@ -70,7 +70,7 @@ public class NavigationTest extends BaseTest{
                 .andExpect(view().name("mainPage"))
                 .andReturn();
         // Проверяем, что есть 5 элементов в системе навигации, как и должно быть у авторизованного пользователя
-        Document document = Jsoup.parse(res.getResponse().getContentAsString(), "http://localhost:" + port + "/");
+        Document document = Jsoup.parse(res.getResponse().getContentAsString());
         Elements els = document.select("a.me-3.py-2.text-dark.text-decoration-none");
         Assertions.assertEquals(5, els.size());
 
@@ -118,7 +118,7 @@ public class NavigationTest extends BaseTest{
                 .andExpect(view().name("mainPage"))
                 .andReturn();
         // Проверяем, что есть 4 элементов в системе навигации, как и должно быть у неавторизованного пользователя, нет поля Профиль
-        Document document = Jsoup.parse(res.getResponse().getContentAsString(), "http://localhost:" + port + "/");
+        Document document = Jsoup.parse(res.getResponse().getContentAsString());
         Elements els = document.select("a.me-3.py-2.text-dark.text-decoration-none");
         Assertions.assertEquals(4, els.size());
 

@@ -23,7 +23,7 @@ class AuthorizationUserTests extends BaseTest{
                 .andExpect(status().isOk())
                 .andExpect(view().name("mainPage"))
                 .andReturn();
-        Document document = Jsoup.parse(res.getResponse().getContentAsString(), "http://localhost:" + port + "/");
+        Document document = Jsoup.parse(res.getResponse().getContentAsString());
         // Проверяем, что в меню навигации есть кнопка Logout и Profile, что говорит, о том что пользователь аутентифицировался
         Assertions.assertEquals(1, document
                 .select("a[href=/logout].me-3.py-2.text-dark.text-decoration-none")
@@ -43,7 +43,7 @@ class AuthorizationUserTests extends BaseTest{
                 .andExpect(status().isOk())
                 .andExpect(view().name("mainPage"))
                 .andReturn();
-        Document document = Jsoup.parse(res.getResponse().getContentAsString(), "http://localhost:" + port + "/");
+        Document document = Jsoup.parse(res.getResponse().getContentAsString());
         // Проверяем, что в меню навигации есть кнопка LogIn и нет кнопки Logout, что говорит, о том что пользователь НЕ аутентифицирован
         Assertions.assertEquals(0, document
                 .select("a[href=/login].me-3.py-2.text-dark.text-decoration-none")
