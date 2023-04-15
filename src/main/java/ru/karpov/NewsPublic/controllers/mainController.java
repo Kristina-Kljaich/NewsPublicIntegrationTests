@@ -1,4 +1,5 @@
 package ru.karpov.NewsPublic.controllers;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +17,7 @@ import ru.karpov.NewsPublic.repos.markRepo;
 import ru.karpov.NewsPublic.repos.newsRepo;
 import ru.karpov.NewsPublic.repos.subscribeRepo;
 import ru.karpov.NewsPublic.repos.userRepo;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -31,24 +33,21 @@ public class mainController {
     private markRepo markRepo;
 
     @Autowired
-    public void MainController(userRepo userRepo, newsRepo newsRepo, subscribeRepo subscribeRepo, markRepo markRepo)
-    {
+    public void MainController(userRepo userRepo, newsRepo newsRepo, subscribeRepo subscribeRepo, markRepo markRepo) {
         this.newsRepo = newsRepo;
         this.userRepo = userRepo;
         this.subscribeRepo = subscribeRepo;
         this.markRepo = markRepo;
     }
 
-    private boolean isAuth()
-    {
+    private boolean isAuth() {
         System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
         System.out.println(SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"));
         return SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser");
     }
 
     @GetMapping("/")
-    public String getMainPage(Model model)
-    {
+    public String getMainPage(Model model) {
         List<News> news = new ArrayList<>();
         news = newsRepo.findAll();
         Collections.reverse(news);
@@ -60,10 +59,8 @@ public class mainController {
     }
 
     @PostMapping("/reloadMain")
-    public String reloadMainPage(@RequestParam("category") String category, Model model)
-    {
-        switch(category)
-        {
+    public String reloadMainPage(@RequestParam("category") String category, Model model) {
+        switch (category) {
             case "All":
                 List<News> news = new ArrayList<>();
                 news = newsRepo.findAll();
@@ -102,13 +99,11 @@ public class mainController {
     }
 
     @GetMapping("/addNewsPage")
-    public String getAddNewsPage(Model model)
-    {
+    public String getAddNewsPage(Model model) {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         final String id = authentication.getName();
         final userInfo authUser = userRepo.findUserById(id);
-        if(authUser != null)
-        {
+        if (authUser != null) {
             model.addAttribute("publication", 0);
             model.addAttribute("isAuth", isAuth() ? 0 : 1);
             return "addNewsPage";
@@ -117,14 +112,12 @@ public class mainController {
     }
 
     @GetMapping("/authProfilePage")
-    public String getAuthProfilePage(Model model)
-    {
+    public String getAuthProfilePage(Model model) {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         final String id = authentication.getName();
         final userInfo authUser = userRepo.findUserById(id);
         model.addAttribute("isAuth", isAuth() ? 0 : 1);
-        if(authUser != null)
-        {
+        if (authUser != null) {
             model.addAttribute("name", authUser.getName());
             model.addAttribute("age", authUser.getAge());
             model.addAttribute("description", authUser.getDescription());
@@ -140,30 +133,26 @@ public class mainController {
     }
 
     @GetMapping("/addUserInfoPage")
-    public String getAddUserInfoPage()
-    {
+    public String getAddUserInfoPage() {
         return "addUserInfoPage";
     }
 
     @GetMapping("/subscriptionsPage")
-    public String getSubscriptionsPage(Model model)
-    {
+    public String getSubscriptionsPage(Model model) {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         final String id = authentication.getName();
         final List<userInfo> subscribeUsers = new ArrayList<>();
-        for (Subscribe subscribe : subscribeRepo.findSubscribeByIdUser(id))
-        {
+        for (Subscribe subscribe : subscribeRepo.findSubscribeByIdUser(id)) {
             subscribeUsers.add(userRepo.findUserById(subscribe.getIdUserSubscribe()));
         }
-        model.addAttribute("noSubscribes", subscribeUsers.size() == 0 ? 1:0);
+        model.addAttribute("noSubscribes", subscribeUsers.size() == 0 ? 1 : 0);
         model.addAttribute("subscribes", subscribeUsers);
         model.addAttribute("isAuth", isAuth() ? 0 : 1);
         return "subscriptionsPage";
     }
 
     @GetMapping("/profilePage/{username}")
-    public String getProfilePage(@PathVariable("username") String username, Model model)
-    {
+    public String getProfilePage(@PathVariable("username") String username, Model model) {
         userInfo user = userRepo.findUserByName(username);
         model.addAttribute("image", user.getImageUrl());
         model.addAttribute("name", user.getName());
@@ -175,16 +164,12 @@ public class mainController {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         final String id = authentication.getName();
         model.addAttribute("isAuth", isAuth() ? 0 : 1);
-        if(id.equals(user.getId()))
-        {
+        if (id.equals(user.getId())) {
             return "authProfilePage";
         }
-        if(subscribeRepo.findSubscribeByIdUserSubscribeAndIdUser(user.getId(), id) != null)
-        {
+        if (subscribeRepo.findSubscribeByIdUserSubscribeAndIdUser(user.getId(), id) != null) {
             model.addAttribute("isSub", 1);
-        }
-        else
-        {
+        } else {
             model.addAttribute("isSub", 0);
         }
         return "profilePage";
@@ -192,24 +177,25 @@ public class mainController {
 
     @GetMapping("/newsPage/{id}")
     public String getNewsPage(@PathVariable("id") Integer id,
-                              Model model)
-    {
-        model.addAttribute("news", newsRepo.findNewsById(id));
-        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        final String idAuth = authentication.getName();
-        model.addAttribute("isAuth", isAuth() ? 0 : 1);
-        if(userRepo.findUserByName(newsRepo.findNewsById(id).getAuthorName()).getId().equals(idAuth))
-        {
-            model.addAttribute("edit", 1);
-        }
-        else
-        {
-            model.addAttribute("edit", 0);
-        }
-        if (markRepo.findAllByIdUserAndIdNews(idAuth, id) != null) {
-            model.addAttribute("rate", 1);
+                              Model model) {
+        News news = newsRepo.findNewsById(id);
+        if (news == null) {
+            model.addAttribute("cantFindError", 1);
         } else {
-            model.addAttribute("rate", 0);
+            model.addAttribute("news", news);
+            final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            final String idAuth = authentication.getName();
+            model.addAttribute("isAuth", isAuth() ? 0 : 1);
+            if (userRepo.findUserByName(newsRepo.findNewsById(id).getAuthorName()).getId().equals(idAuth)) {
+                model.addAttribute("edit", 1);
+            } else {
+                model.addAttribute("edit", 0);
+            }
+            if (markRepo.findAllByIdUserAndIdNews(idAuth, id) != null) {
+                model.addAttribute("rate", 1);
+            } else {
+                model.addAttribute("rate", 0);
+            }
         }
         return "newsPage";
     }
@@ -223,8 +209,7 @@ public class mainController {
     }
 
     @PostMapping("/reloadAuthProfilePage")
-    public String reloadAuthProfilePage(@RequestParam("category") String category, Model model)
-    {
+    public String reloadAuthProfilePage(@RequestParam("category") String category, Model model) {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         final String id = authentication.getName();
         final userInfo authUser = userRepo.findUserById(id);
@@ -234,8 +219,7 @@ public class mainController {
         model.addAttribute("averageMark", authUser.getCountOfMarks() == 0 ? 0 :
                 authUser.getSummaryOfMarks() / authUser.getCountOfMarks());
         model.addAttribute("image", authUser.getImageUrl());
-        switch(category)
-        {
+        switch (category) {
             case "All":
                 model.addAttribute("publications", newsRepo.findNewsByAuthorName(authUser.getName()));
                 model.addAttribute("isPub", newsRepo.findAll().size() == 0 ? 1 : 0);
@@ -278,8 +262,7 @@ public class mainController {
     @PostMapping("/reloadProfilePage/{name}")
     public String reloadProfilePage(@PathVariable("name") String username,
                                     @RequestParam("category") String category,
-                                    Model model)
-    {
+                                    Model model) {
         userInfo user = userRepo.findUserByName(username);
         model.addAttribute("image", user.getImageUrl());
         model.addAttribute("name", user.getName());
@@ -287,8 +270,7 @@ public class mainController {
         model.addAttribute("description", user.getDescription());
         model.addAttribute("averageMark", user.getCountOfMarks() == 0 ? 0 :
                 user.getSummaryOfMarks() / user.getCountOfMarks());
-        switch(category)
-        {
+        switch (category) {
             case "All":
                 model.addAttribute("publications", newsRepo.findNewsByAuthorName(username));
                 model.addAttribute("isPub", newsRepo.findAll().size() == 0 ? 1 : 0);

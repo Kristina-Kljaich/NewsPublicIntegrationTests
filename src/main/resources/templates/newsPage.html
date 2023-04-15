@@ -7,37 +7,45 @@
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
-<div class ="container">
-    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-        <h1 class="display-4 fw-normal" th:text="${news.getName()}"></h1>
-        <img style="border-radius: 30px; text-align: center" th:src="@{${news.getImageUrl()}}">
+<div class="container">
+    <div th:if="${cantFindError == 1}" class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <h1 class="display-4 fw-normal">Can not find news</h1>
     </div>
+    <div th:if="${cantFindError == 0}">
+        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+            <h1 class="display-4 fw-normal" th:text="${news.getName()}"></h1>
+            <img style="border-radius: 30px; text-align: center" th:src="@{${news.getImageUrl()}}">
+        </div>
 
-    <hr class="my-4">
-    <div>
-        <div class="bd-example text-center">
-            <p class="h3" th:text="${news.getText()}"></p>
-            <hr class="my-4">
-            <small class="text-muted">
-                Author: <a th:href="@{/profilePage/{username}(username = ${news.getAuthorName()})}" th:text="${news.getAuthorName()}"></a><br>
-                Date: <div th:text="${news.getDate()}"></div><br>
-            </small>
-            <div th:if="${edit == 1}">
-                <a th:href="@{/editNews/{id}(id=${news.getId()})}">Edit publication</a><br>
-                <a th:href="@{/deleteNews/{id}(id=${news.getId()})}">Delete publication</a><br>
-            </div>
-            <div th:if="${edit == 0}">
-                <div th:if="${rate == 0}">
-                    <form th:action="@{/rateNews/{id}(id=${news.getId()})}" method="post">
-                        <select name="mark" id="mark" required>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                        <button type="submit">Rate</button>
-                    </form>
+        <hr class="my-4">
+        <div>
+            <div class="bd-example text-center">
+                <p class="h3" th:text="${news.getText()}"></p>
+                <hr class="my-4">
+                <small class="text-muted">
+                    Author: <a th:href="@{/profilePage/{username}(username = ${news.getAuthorName()})}"
+                               th:text="${news.getAuthorName()}"></a><br>
+                    Date:
+                    <div th:text="${news.getDate()}"></div>
+                    <br>
+                </small>
+                <div th:if="${edit == 1}">
+                    <a th:href="@{/editNews/{id}(id=${news.getId()})}">Edit publication</a><br>
+                    <a th:href="@{/deleteNews/{id}(id=${news.getId()})}">Delete publication</a><br>
+                </div>
+                <div th:if="${edit == 0}">
+                    <div th:if="${rate == 0}">
+                        <form th:action="@{/rateNews/{id}(id=${news.getId()})}" method="post">
+                            <select name="mark" id="mark" required>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                            <button type="submit">Rate</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
