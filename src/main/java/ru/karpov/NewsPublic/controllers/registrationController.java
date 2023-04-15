@@ -92,7 +92,7 @@ public class registrationController {
 
         System.out.println(file.getBytes().length);
         StringBuilder fileNames = new StringBuilder();
-        Path fileNameAndPath = Paths.get("D:/temik/Work/Data/NewsPublic/NewsPublic/src/main/resources/static/images",
+        Path fileNameAndPath = Paths.get("C:\\Users\\Иван\\IdeaProjects\\NewsPublicIntegrationTests\\src\\main\\resources\\static\\images",
                 file.getOriginalFilename());
         fileNames.append(file.getOriginalFilename());
         Files.write(fileNameAndPath, file.getBytes());
