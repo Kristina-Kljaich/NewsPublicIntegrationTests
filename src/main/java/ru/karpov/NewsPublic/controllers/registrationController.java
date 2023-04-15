@@ -13,6 +13,7 @@ import ru.karpov.NewsPublic.models.userInfo;
 import ru.karpov.NewsPublic.repos.newsRepo;
 import ru.karpov.NewsPublic.repos.userRepo;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -89,7 +90,7 @@ public class registrationController {
         newUser.setAge(age);
         newUser.setCountOfMarks(0);
         newUser.setSummaryOfMarks(0);
-
+        System.out.println("PATH" + new File(".").getAbsolutePath());
         System.out.println(file.getBytes().length);
         StringBuilder fileNames = new StringBuilder();
         Path fileNameAndPath = Paths.get("C:\\Users\\Иван\\IdeaProjects\\NewsPublicIntegrationTests\\src\\main\\resources\\static\\images",
