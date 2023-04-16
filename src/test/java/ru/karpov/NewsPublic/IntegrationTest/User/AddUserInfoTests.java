@@ -1,4 +1,4 @@
-package ru.karpov.NewsPublic.IntegrationTest;
+package ru.karpov.NewsPublic.IntegrationTest.User;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.jsoup.Jsoup;
@@ -10,6 +10,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.util.LinkedMultiValueMap;
+import ru.karpov.NewsPublic.IntegrationTest.BaseTest;
 import ru.karpov.NewsPublic.models.userInfo;
 
 import java.io.File;

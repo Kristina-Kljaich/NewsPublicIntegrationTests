@@ -1,4 +1,4 @@
-package ru.karpov.NewsPublic.IntegrationTest;
+package ru.karpov.NewsPublic.IntegrationTest.News;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.jsoup.Jsoup;
@@ -10,6 +10,8 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.util.LinkedMultiValueMap;
+import ru.karpov.NewsPublic.IntegrationTest.BaseTest;
+import ru.karpov.NewsPublic.IntegrationTest.Utils;
 import ru.karpov.NewsPublic.models.Categories;
 import ru.karpov.NewsPublic.models.News;
 
@@ -20,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-public class AddPostTest extends BaseTest{
+public class AddNewsTest extends BaseTest {
     @Test
     @WithMockUser("Test")
     public void addPostTest() throws Exception{

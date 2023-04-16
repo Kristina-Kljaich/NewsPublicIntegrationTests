@@ -1,4 +1,4 @@
-package ru.karpov.NewsPublic.IntegrationTest;
+package ru.karpov.NewsPublic.IntegrationTest.News;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MvcResult;
+import ru.karpov.NewsPublic.IntegrationTest.BaseTest;
+import ru.karpov.NewsPublic.IntegrationTest.Utils;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;

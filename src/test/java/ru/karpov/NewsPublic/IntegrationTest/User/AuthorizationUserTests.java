@@ -1,4 +1,4 @@
-package ru.karpov.NewsPublic.IntegrationTest;
+package ru.karpov.NewsPublic.IntegrationTest.User;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -8,12 +8,13 @@ import org.junit.jupiter.api.Test;
 
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MvcResult;
+import ru.karpov.NewsPublic.IntegrationTest.BaseTest;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-class AuthorizationUserTests extends BaseTest{
+class AuthorizationUserTests extends BaseTest {
     // Проверяем связь модуля авторизации и остального приложения
     @WithMockUser("spring")
     @Test
