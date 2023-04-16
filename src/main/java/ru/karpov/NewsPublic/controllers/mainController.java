@@ -182,6 +182,7 @@ public class mainController {
         if (news == null) {
             model.addAttribute("cantFindError", 1);
         } else {
+            model.addAttribute("cantFindError", 0);
             model.addAttribute("news", news);
             final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             final String idAuth = authentication.getName();

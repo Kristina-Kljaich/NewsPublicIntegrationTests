@@ -12,9 +12,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-public class NewsCheckTest extends BaseTest {
+public class CategoryFilterTest extends BaseTest {
     @Test
-    public void checkNews() throws Exception {
+    public void checkCategoryFilter() throws Exception {
         // Создаем пользователя и новости от него
         Utils.createNewNews(userRepo, newsRepo, "Test1", "Sport", "Test");
         Utils.createNewNews(userRepo, newsRepo, "Test2", "Sport", "Test1");

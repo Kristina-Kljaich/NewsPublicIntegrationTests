@@ -46,7 +46,6 @@ public class GettingDeletedNewsTest extends BaseTest {
         res = mvc.perform(get("http://localhost:" + port + hrefOfNews))
                 .andExpect(status().isOk())
                 .andExpect(view().name("newsPage"))
-                .andDo(print())
                 .andReturn();
         document = Jsoup.parse(res.getResponse().getContentAsString());
         // Проверяем, что выведено сообщение об ошибке
