@@ -20,6 +20,7 @@ import ru.karpov.NewsPublic.repos.userRepo;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -159,7 +160,7 @@ public class mainController {
         model.addAttribute("age", user.getAge());
         model.addAttribute("description", user.getDescription());
         model.addAttribute("averageMark", user.getCountOfMarks() == 0 ? 0 :
-                user.getSummaryOfMarks() / user.getCountOfMarks());
+                new BigDecimal(user.getSummaryOfMarks()).divide(new BigDecimal(user.getCountOfMarks())).doubleValue());
         model.addAttribute("publications", newsRepo.findNewsByAuthorName(user.getName()));
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         final String id = authentication.getName();
