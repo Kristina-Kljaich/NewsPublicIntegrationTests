@@ -50,10 +50,11 @@ public class registrationController {
         System.out.println(id);
         List<News> news = new ArrayList<>();
         model.addAttribute("isAuth", isAuth() ? 0 : 1);
-        if(userRepo.findUserById(id) != null)
+        userInfo user = userRepo.findUserById(id);
+        if(user != null)
         {
-            news = newsRepo.findNewsByAuthorName(userRepo.findUserById(id).getName());
-            userRepo.delete(userRepo.findUserById(id));
+            news = newsRepo.findNewsByAuthorName(user.getName());
+            userRepo.delete(user);
         }
         if(username.isEmpty() || description.isEmpty() || age == 0 || file.getBytes().length < 1)
         {

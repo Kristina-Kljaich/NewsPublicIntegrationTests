@@ -74,4 +74,17 @@ public class userInfo {
         return this.getCountOfMarks() == 0 ? 0 :
                 this.getSummaryOfMarks() / this.getCountOfMarks();
     }
+
+    @Override
+    public String toString() {
+        return "userInfo{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", description='" + description + '\'' +
+                ", countOfMarks=" + countOfMarks +
+                ", summaryOfMarks=" + summaryOfMarks +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
+    }
 }
