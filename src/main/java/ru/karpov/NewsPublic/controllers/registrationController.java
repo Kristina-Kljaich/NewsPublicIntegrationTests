@@ -28,14 +28,12 @@ public class registrationController {
     private newsRepo newsRepo;
 
     @Autowired
-    public void RegistrationController(final userRepo userRepo, final newsRepo newsRepo)
-    {
+    public void RegistrationController(final userRepo userRepo, final newsRepo newsRepo) {
         this.userRepo = userRepo;
         this.newsRepo = newsRepo;
     }
 
-    private boolean isAuth()
-    {
+    private boolean isAuth() {
         return SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser");
     }
 
@@ -50,37 +48,33 @@ public class registrationController {
         System.out.println(id);
         List<News> news = new ArrayList<>();
         model.addAttribute("isAuth", isAuth() ? 0 : 1);
-        userInfo user = userRepo.findUserById(id);
-        if(user != null)
-        {
-            news = newsRepo.findNewsByAuthorName(user.getName());
-            userRepo.delete(user);
-        }
-        if(username.isEmpty() || description.isEmpty() || age == 0 || file.getBytes().length < 1)
-        {
+
+        if (username.isEmpty() || description.isEmpty() || age == 0 || file.getBytes().length < 1) {
             model.addAttribute("nullError", 1);
             return "addUserInfoPage";
         }
-        if(age > 100) {
+        if (age > 100 || age < 0) {
             model.addAttribute("ageError", 1);
             return "addUserInfoPage";
         }
-        if(file.getBytes().length > 31457280)
-        {
+        if (file.getBytes().length > 31457280) {
             model.addAttribute("imageError", 1);
             return "addUserInfoPage";
         }
-        if(description.length() > 300)
-        {
+        if (description.length() > 300) {
             model.addAttribute("descError", 1);
             return "addUserInfoPage";
         }
-        if(username.length() > 15)
-        {
+        if (username.length() > 15) {
             model.addAttribute("descError", 1);
             return "addUserInfoPage";
         }
-        for (News publication: news) {
+        userInfo user = userRepo.findUserById(id);
+        if (user != null) {
+            news = newsRepo.findNewsByAuthorName(user.getName());
+            userRepo.delete(user);
+        }
+        for (News publication : news) {
             publication.setAuthorName(username);
             newsRepo.save(publication);
         }
