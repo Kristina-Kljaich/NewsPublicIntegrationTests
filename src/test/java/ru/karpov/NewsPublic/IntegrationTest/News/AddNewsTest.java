@@ -23,6 +23,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 public class AddNewsTest extends BaseTest {
+    // Интеграция добавления статьи и БД
+    // Добавляем статью и проверяем, что все корректно располагается и статья добавляется
     @Test
     @WithMockUser("Test")
     public void addPostTest() throws Exception{

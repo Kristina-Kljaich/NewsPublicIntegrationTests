@@ -19,6 +19,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 public class RateNewsTest extends BaseTest {
+    // Интеграция системы оценок и страницы новости
+    // Производится оценка новости пользователем и производится проверка, что у пользователя нет возможности
+    // повторно оценить ту же новости и текущая оценка добавлена в БД
     @Test
     @WithMockUser("Test")
     public void rateNews() throws Exception {

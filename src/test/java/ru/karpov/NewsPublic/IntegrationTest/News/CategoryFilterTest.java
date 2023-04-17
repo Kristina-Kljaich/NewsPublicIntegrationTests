@@ -15,6 +15,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 public class CategoryFilterTest extends BaseTest {
+    // Интеграция модуля фильтрации новостей и БД
+    // Добавляются несколько новостей разных категорий и проверяется, что отображаются только те новостт, категория которых выбрана
     @Test
     public void checkCategoryFilter() throws Exception {
         // Создаем пользователя и новости от него

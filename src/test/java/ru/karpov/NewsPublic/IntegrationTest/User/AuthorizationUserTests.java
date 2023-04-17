@@ -16,6 +16,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class AuthorizationUserTests extends BaseTest {
     // Проверяем связь модуля авторизации и остального приложения
+    // Подключаемся через авторизованного пользователя и неавторизованного, проверяем, что система навигации успешно
+    // показывает возможности входа/выхода пользователя
     @WithMockUser("spring")
     @Test
     public void authWithCorrectUser() throws Exception {

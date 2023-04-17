@@ -16,6 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 public class GettingDeletedNewsTest extends BaseTest {
+    // Интеграция модуля новостей и БД
     // Создаем статью, пользователь Test1 загружает страницу со статьями, после этого пользователь Test удаляет свою статью
     // и при попытке пользователя Test1 зайти на удаленную статью должно высветиться сообщение об ошибке
     @Test

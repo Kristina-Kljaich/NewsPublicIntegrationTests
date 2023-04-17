@@ -15,6 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 public class SubscribeTest extends BaseTest {
+    // Интеграция модуля подписок и БД
     @Test
     @WithMockUser("Test")
     public void checkValidSubscription() throws Exception {

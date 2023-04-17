@@ -15,6 +15,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 public class NewsPositiveTest extends BaseTest {
+    // Интеграция главной страницы и модуля новостей
+    // Переход на новость через главную страницу
     @Test
     @WithMockUser("Test")
     public void checkGettingNews() throws Exception {

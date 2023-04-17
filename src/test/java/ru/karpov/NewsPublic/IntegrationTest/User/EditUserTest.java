@@ -19,6 +19,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 public class EditUserTest extends BaseTest {
+    // Интеграция модуля редактирования профиля и модуля профиля
+    // Редактируем профиль и проверяем, что в БД изменились значения, а также профиль отображает измененные поля
     @Test
     @WithMockUser("Test")
     public void editUser() throws Exception {

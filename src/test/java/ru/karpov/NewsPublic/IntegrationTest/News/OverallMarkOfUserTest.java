@@ -18,6 +18,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 public class OverallMarkOfUserTest extends BaseTest {
+    // Интеграция системы оценок и профиля пользователя
+    // Один пользователя оценивает новости другого пользователя и
+    // проверяется, что средняя оценка установилась правильно у пользователя в профиле
     @Test
     @WithMockUser("Test")
     public void checkOverallMarkOfUser() throws Exception {
