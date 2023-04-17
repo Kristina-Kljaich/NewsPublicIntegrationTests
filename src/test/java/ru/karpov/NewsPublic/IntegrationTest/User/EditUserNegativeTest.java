@@ -109,7 +109,7 @@ public class EditUserNegativeTest extends BaseTest {
             Assertions.assertEquals("Description max - 300, username max - 15", document.select("div.text-danger").first().text());
         }
 
-        // Проверяем, что данные пользователя не поменялись в БД
+        // Проверяем, что пользователь не поменялся
         user = userRepo.findUserById("Test");
         Assertions.assertNotNull(user);
         Assertions.assertEquals(user.getName(), "john");
