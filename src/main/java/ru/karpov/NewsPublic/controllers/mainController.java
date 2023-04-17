@@ -159,6 +159,7 @@ public class mainController {
             model.addAttribute("nullError", 1);
             return "profilePage";
         }
+        model.addAttribute("nullError", 0);
         model.addAttribute("image", user.getImageUrl());
         model.addAttribute("name", user.getName());
         model.addAttribute("age", user.getAge());
