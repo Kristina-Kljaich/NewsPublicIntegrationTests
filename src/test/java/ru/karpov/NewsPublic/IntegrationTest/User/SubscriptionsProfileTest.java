@@ -31,7 +31,7 @@ public class SubscriptionsProfileTest extends BaseTest {
         Document document = Jsoup.parse(res.getResponse().getContentAsString());
         // Находим там пользователя Test1
         Assertions.assertEquals("Test1", document.select("a[href=/profilePage/Test1]").get(0).text());
-        // Переходим к нему в профиль и проверяем, что данные отбрадены верно и что мы перешли на правильного пользователя
+        // Переходим к нему в профиль и проверяем, что данные отображены верно и мы перешли на правильного пользователя
         res = mvc.perform(get("http://localhost:" + port + "/profilePage/Test1"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("profilePage")).andDo(print())

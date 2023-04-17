@@ -22,7 +22,7 @@ public class AddUserInfoTest extends BaseTest {
     @WithMockUser("spring")
     @Test
     public void addUserInfoCheckTest() throws Exception {
-        // Заходим через В профиль пользователя первый раз, проверяем, что перед нами страница addUserInfoPage
+        // Заходим в профиль пользователя, который не добавил о себе информацию, проверяем, что перед нами страница addUserInfoPage
         MvcResult res = mvc.perform(get("http://localhost:" + port + "/authProfilePage"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("addUserInfoPage"))
