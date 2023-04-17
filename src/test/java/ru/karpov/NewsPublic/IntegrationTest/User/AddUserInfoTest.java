@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-public class AddUserInfoTests extends BaseTest {
+public class AddUserInfoTest extends BaseTest {
     // Проверяем страницу добавления и API добавления информации о пользователе в БД
     @WithMockUser("spring")
     @Test

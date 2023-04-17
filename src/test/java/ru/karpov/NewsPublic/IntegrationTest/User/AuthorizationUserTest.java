@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-class AuthorizationUserTests extends BaseTest {
+class AuthorizationUserTest extends BaseTest {
     // Проверяем связь модуля авторизации и остального приложения
     // Подключаемся через авторизованного пользователя и неавторизованного, проверяем, что система навигации успешно
     // показывает возможности входа/выхода пользователя
