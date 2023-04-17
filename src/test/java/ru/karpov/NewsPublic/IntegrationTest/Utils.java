@@ -1,8 +1,10 @@
 package ru.karpov.NewsPublic.IntegrationTest;
 
 import ru.karpov.NewsPublic.models.News;
+import ru.karpov.NewsPublic.models.Subscribe;
 import ru.karpov.NewsPublic.models.userInfo;
 import ru.karpov.NewsPublic.repos.newsRepo;
+import ru.karpov.NewsPublic.repos.subscribeRepo;
 import ru.karpov.NewsPublic.repos.userRepo;
 
 import java.time.Instant;
@@ -31,5 +33,12 @@ public class Utils {
         news.setDate(Date.from(Instant.now()));
         news.setAuthorName(userId);
         newsRepo.save(news);
+    }
+
+    public static void createNewSubscription(subscribeRepo subscribeRepo, String idUser, String idSubscribe) {
+        Subscribe subscribe = new Subscribe();
+        subscribe.setIdUser(idUser);
+        subscribe.setIdUserSubscribe(idSubscribe);
+        subscribeRepo.save(subscribe);
     }
 }
