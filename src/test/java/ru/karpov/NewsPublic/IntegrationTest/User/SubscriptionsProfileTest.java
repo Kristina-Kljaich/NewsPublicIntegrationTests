@@ -27,10 +27,11 @@ public class SubscriptionsProfileTest extends BaseTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("subscriptionsPage"))
                 .andReturn();
-        // Проверяем, что у него нет подписок
+        // Проверяем, есть подписка
         Document document = Jsoup.parse(res.getResponse().getContentAsString());
         // Находим там пользователя Test1
         Assertions.assertEquals("Test1", document.select("a[href=/profilePage/Test1]").get(0).text());
+        // Переходим к нему в профиль и проверяем, что данные отбрадены верно и что мы перешли на правильного пользователя
         res = mvc.perform(get("http://localhost:" + port + "/profilePage/Test1"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("profilePage")).andDo(print())
