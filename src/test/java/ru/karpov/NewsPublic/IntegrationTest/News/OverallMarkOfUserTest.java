@@ -1,6 +1,5 @@
 package ru.karpov.NewsPublic.IntegrationTest.News;
 
-import org.h2.engine.User;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Assertions;

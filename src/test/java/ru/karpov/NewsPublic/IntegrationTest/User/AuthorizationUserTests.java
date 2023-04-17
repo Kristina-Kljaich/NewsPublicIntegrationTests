@@ -2,7 +2,6 @@ package ru.karpov.NewsPublic.IntegrationTest.User;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

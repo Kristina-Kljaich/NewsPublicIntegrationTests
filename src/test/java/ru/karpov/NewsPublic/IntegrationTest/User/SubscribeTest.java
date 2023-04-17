@@ -10,7 +10,6 @@ import ru.karpov.NewsPublic.IntegrationTest.BaseTest;
 import ru.karpov.NewsPublic.IntegrationTest.Utils;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -41,7 +40,7 @@ public class SubscribeTest extends BaseTest {
         // Заново получаем страницу подписок
         res = mvc.perform(get("http://localhost:" + port + "/subscriptionsPage"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("subscriptionsPage")).andDo(print())
+                .andExpect(view().name("subscriptionsPage"))
                 .andReturn();
         document = Jsoup.parse(res.getResponse().getContentAsString());
         // Находим там пользователя Test1

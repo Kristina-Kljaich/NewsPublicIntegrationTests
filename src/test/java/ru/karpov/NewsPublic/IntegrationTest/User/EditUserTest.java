@@ -13,7 +13,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import ru.karpov.NewsPublic.IntegrationTest.BaseTest;
 import ru.karpov.NewsPublic.models.userInfo;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -79,7 +78,6 @@ public class EditUserTest extends BaseTest {
         MvcResult res = mvc.perform(get("http://localhost:" + port + "/authProfilePage"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("authProfilePage"))
-                .andDo(print())
                 .andReturn();
 
         Document document = Jsoup.parse(res.getResponse().getContentAsString());

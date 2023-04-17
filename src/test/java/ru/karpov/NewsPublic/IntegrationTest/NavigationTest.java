@@ -12,8 +12,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class NavigationTest extends BaseTest{
-
-    // Проверяем связь модуля навигации с остальными модулями с пользователем, который НЕ прошел регистрацию до конца
+    // Проверяем связь модуля навигации с остальными модулями с пользователем,
+    // который НЕ прошел регистрацию до конца
     @WithMockUser("spring")
     @Test
     public void checkNavigationOfAuthorizationUserFirstTime() throws Exception {
@@ -58,7 +58,8 @@ public class NavigationTest extends BaseTest{
                 .andExpect(view().name("mainPage"));
     }
 
-    // Проверяем связь модуля навигации с остальными модулями с пользователем, который прошел регистрацию до конца
+    // Проверяем связь модуля навигации с остальными модулями с пользователем,
+    // который прошел регистрацию до конца
     @WithMockUser("spring")
     @Test
     public void checkNavigationOfAuthorizationUserNotFirstTime() throws Exception {

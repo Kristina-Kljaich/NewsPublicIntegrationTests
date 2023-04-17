@@ -13,8 +13,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import ru.karpov.NewsPublic.IntegrationTest.BaseTest;
 import ru.karpov.NewsPublic.models.userInfo;
 
-import java.io.File;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
