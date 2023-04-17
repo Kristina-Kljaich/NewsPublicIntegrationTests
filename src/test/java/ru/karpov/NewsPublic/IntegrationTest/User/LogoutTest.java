@@ -27,6 +27,7 @@ public class LogoutTest extends BaseTest {
         // Проверяем, что в меню навигации есть кнопка Logout и Profile, что говорит, о том что пользователь аутентифицировался
         Assertions.assertEquals("Logout", document.select("a[href=/logout].me-3.py-2.text-dark.text-decoration-none").text());
         Assertions.assertEquals("Profile", document.select("a[href=/authProfilePage].me-3.py-2.text-dark.text-decoration-none").text());
+        // Разлогиниваем пользователя
         res = mvc.perform(get("http://localhost:" + port + "/logout"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("mainPage"))
