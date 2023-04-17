@@ -12,10 +12,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.util.LinkedMultiValueMap;
 import ru.karpov.NewsPublic.IntegrationTest.BaseTest;
 import ru.karpov.NewsPublic.IntegrationTest.Utils;
-import ru.karpov.NewsPublic.models.Categories;
-import ru.karpov.NewsPublic.models.News;
-
-import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
