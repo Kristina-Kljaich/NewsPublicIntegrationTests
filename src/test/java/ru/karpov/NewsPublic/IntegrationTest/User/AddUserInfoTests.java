@@ -64,7 +64,7 @@ public class AddUserInfoTests extends BaseTest {
         Assertions.assertEquals(user.getSummaryOfMarks(), 0);
         Assertions.assertEquals(user.getAge(), 30);
         Assertions.assertEquals(user.getDescription(), "spring");
-        Assertions.assertEquals(user.getImageUrl(), "image.jpg");
+        Assertions.assertEquals(user.getImageUrl(), "/images/image.jpg");
 
         // Проверяем, что после добавления пользователя, он попадает на страницу authProfilePage, т.е. на свой профиль
         mvc.perform(get("http://localhost:" + port + "/authProfilePage"))
