@@ -39,7 +39,6 @@ public class NewsPositiveTest extends BaseTest {
         res = mvc.perform(get("http://localhost:" + port + hrefOfNews))
                 .andExpect(status().isOk())
                 .andExpect(view().name("newsPage"))
-                .andDo(print())
                 .andReturn();
         // Проверяем, что в новости все поля правильные
         document = Jsoup.parse(res.getResponse().getContentAsString());
