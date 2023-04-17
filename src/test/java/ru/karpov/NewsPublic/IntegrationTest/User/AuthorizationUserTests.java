@@ -48,7 +48,7 @@ class AuthorizationUserTests extends BaseTest {
         Document document = Jsoup.parse(res.getResponse().getContentAsString());
         // Проверяем, что в меню навигации есть кнопка LogIn и нет кнопки Logout, что говорит, о том что пользователь НЕ аутентифицирован
         Assertions.assertEquals(0, document
-                .select("a[href=/login].me-3.py-2.text-dark.text-decoration-none")
+                .select("a[href=/logout].me-3.py-2.text-dark.text-decoration-none")
                 .size());
         Assertions.assertEquals(1, document
                 .select("a[href=/authProfilePage].me-3.py-2.text-dark.text-decoration-none")
