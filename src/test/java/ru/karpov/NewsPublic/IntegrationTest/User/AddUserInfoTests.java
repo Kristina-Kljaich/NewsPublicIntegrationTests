@@ -30,11 +30,11 @@ public class AddUserInfoTests extends BaseTest {
 
         // Проверяем наполнение страницы добавления информации
         Document document = Jsoup.parse(res.getResponse().getContentAsString());
-        Assertions.assertEquals(document.select("label.form-label").get(0).getElementsContainingText("Username").size(), 1);
-        Assertions.assertEquals(document.select("label.form-label").get(1).getElementsContainingText("Age").size(), 1);
-        Assertions.assertEquals(document.select("label.form-label").get(2).getElementsContainingText("Description").size(), 1);
-        Assertions.assertEquals(document.select("label.form-label").get(3).getElementsContainingText("Photo").size(), 1);
-        Assertions.assertEquals(document.select("button").get(0).getElementsContainingText("Add info").size(), 1);
+        Assertions.assertEquals("Username", document.select("label.form-label").get(0).text());
+        Assertions.assertEquals("Age", document.select("label.form-label").get(1).text());
+        Assertions.assertEquals("Description", document.select("label.form-label").get(2).text());
+        Assertions.assertEquals("Photo", document.select("label.form-label").get(3).text());
+        Assertions.assertEquals("Add info", document.select("button").text());
 
         // Создаем Mock файл картинки
         final byte[] random = RandomStringUtils.random(5).getBytes();
