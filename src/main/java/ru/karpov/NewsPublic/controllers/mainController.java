@@ -155,6 +155,10 @@ public class mainController {
     @GetMapping("/profilePage/{username}")
     public String getProfilePage(@PathVariable("username") String username, Model model) {
         userInfo user = userRepo.findUserByName(username);
+        if (user == null) {
+            model.addAttribute("nullError", 1);
+            return "profilePage";
+        }
         model.addAttribute("image", user.getImageUrl());
         model.addAttribute("name", user.getName());
         model.addAttribute("age", user.getAge());
