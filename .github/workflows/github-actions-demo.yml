@@ -18,19 +18,34 @@ jobs:
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+#      keycloak:
+#        image: bitnami/keycloak:19.0.1
+#        env:
+#          KEYCLOAK_USER: user
+#          KEYCLOAK_PASSWORD: bitnami
+#          KC_DB: postgres
+#          KC_DB_USERNAME: postgres
+#          KC_DB_PASSWORD: postgres
+#          KC_DB_URL: jdbc:postgresql://localhost:5432/postgres
+#          JAVA_OPTS_APPEND: "-Dkeycloak.profile.feature.upload_scripts=enabled"
+#          KEYCLOAK_IMPORT: ./realm-export.json
+#        ports:
+#          - 8080:8080
       keycloak:
-        image: bitnami/keycloak:19.0.1
+        image: quay.io/keycloak/keycloak:19.0.1
         env:
-          KEYCLOAK_USER: user
-          KEYCLOAK_PASSWORD: bitnami
+          KEYCLOAK_ADMIN: admin
+          KEYCLOAK_ADMIN_PASSWORD: admin
           KC_DB: postgres
           KC_DB_USERNAME: postgres
           KC_DB_PASSWORD: postgres
           KC_DB_URL: jdbc:postgresql://localhost:5432/postgres
-          JAVA_OPTS_APPEND: "-Dkeycloak.profile.feature.upload_scripts=enabled"
-          KEYCLOAK_IMPORT: ./realm-export.json
+        steps:
+          - uses: actions/checkout@v3
+          - name: Check conn 1
+            run: start-dev
         ports:
-          - 8080:8080
+          - "8080:8080"
     steps:
       - uses: actions/checkout@v3
 #      - name: Check conn 1
