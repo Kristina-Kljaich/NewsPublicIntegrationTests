@@ -42,9 +42,6 @@ jobs:
           KC_DB_USERNAME: postgres
           KC_DB_PASSWORD: postgres
           KC_DB_URL: jdbc:postgresql://localhost:5432/postgres
-        depends_on:
-          database:
-            condition: service_healthy
         ports:
           - "8080:8080"
     steps:
