@@ -35,7 +35,6 @@ jobs:
 #          - 8080:8080
       keycloak:
         image: quay.io/keycloak/keycloak:18.0
-        restart: on-failure
         environment:
           KEYCLOAK_ADMIN: admin
           KEYCLOAK_ADMIN_PASSWORD: admin
