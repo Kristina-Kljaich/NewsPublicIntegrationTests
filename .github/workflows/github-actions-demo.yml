@@ -34,16 +34,21 @@ jobs:
 #        ports:
 #          - 8080:8080
       keycloak:
-        image: quay.io/keycloak/keycloak:18.0
-        env:
+        image: quay.io/keycloak/keycloak:20.0.1
+        ports:
+          - "8080:8080"
+        environment:
           KEYCLOAK_ADMIN: admin
           KEYCLOAK_ADMIN_PASSWORD: admin
           KC_DB: postgres
           KC_DB_USERNAME: postgres
           KC_DB_PASSWORD: postgres
           KC_DB_URL: jdbc:postgresql://localhost:5432/postgres
-        ports:
-          - "8080:8080"
+        command:
+          - start-dev
+          - --import-realm
+        volumes:
+          - ./docker/auth/realm.json:/opt/keycloak/data/import/realm.json
     steps:
 #      - name: Check conn 1
 #        run: telnet localhost 8080
