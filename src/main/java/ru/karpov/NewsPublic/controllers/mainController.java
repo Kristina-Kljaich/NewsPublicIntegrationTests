@@ -59,6 +59,18 @@ public class mainController {
         return "mainPage";
     }
 
+    @GetMapping("/favicon.ico")
+    public String getMainPag1e(Model model) {
+        List<News> news = new ArrayList<>();
+        news = newsRepo.findAll();
+        Collections.reverse(news);
+        model.addAttribute("publications", news);
+        model.addAttribute("isPub", newsRepo.findAll().size() == 0 ? 1 : 0);
+        model.addAttribute("isAuth", isAuth() ? 0 : 1);
+        System.out.println(model);
+        return "mainPage";
+    }
+
     @PostMapping("/reloadMain")
     public String reloadMainPage(@RequestParam("category") String category, Model model) {
         switch (category) {
