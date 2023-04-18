@@ -35,7 +35,7 @@ jobs:
           - 8080:8080
     steps:
       - name: Check conn 1
-        run: curl -I http://localhost:8080/auth/realms/Master/.well-known/openid-configuration
+        run: curl http://localhost:8080/auth/realms/Master/.well-known/openid-configuration
       #      - name: Check conn 2
       #        run: |
       #          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
