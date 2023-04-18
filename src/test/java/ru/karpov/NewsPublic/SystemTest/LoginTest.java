@@ -34,8 +34,9 @@ public class LoginTest {
     void setup() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions ops = new ChromeOptions();
-        ops.setBinary("/usr/bin/google-chrome-stable");
         ops.addArguments("--disable-dev-shm-usage");
+        ops.addArguments("--headless");
+        ops.addArguments("--disable-gpu");
         ops.addArguments("--no-sandbox");
         ops.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(ops);
