@@ -33,6 +33,8 @@ jobs:
           KEYCLOAK_IMPORT: /tmp/realm-export.json
         ports:
           - 8080:8080
+        command:
+          - start-dev --auto-build
     steps:
 #      - name: Check conn 1
 #        run: telnet localhost 8080
