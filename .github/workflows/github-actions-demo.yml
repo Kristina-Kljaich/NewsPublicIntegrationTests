@@ -50,6 +50,7 @@ jobs:
 #        volumes:
 #          - ./docker/auth/realm.json:/opt/keycloak/data/import/realm.json
     steps:
+      - uses: actions/checkout@v3
       - name: Check conn 1
         run: ls
 #      - name: Check conn 2
@@ -59,7 +60,7 @@ jobs:
 #          ./keycloak-19.0.1/bin/kc.sh import --file ./.github/workflows/keycloack/realm-export.json
 #          ./keycloak-19.0.1/bin/kc.sh start-dev
 
-#      - uses: actions/checkout@v3
+#
 #      - uses: actions/setup-java@v3
 #        with:
 #          java-version: '11'
