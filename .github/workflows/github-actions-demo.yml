@@ -61,5 +61,7 @@ jobs:
         run: |
           wget https://github.com/keycloak/keycloak/releases/download/19.0.1/keycloak-19.0.1.tar.gz
           tar -xvzf keycloak-19.0.1.tar.gz
+          rm ./keycloak-19.0.1/conf/keycloak.conf
+          cp ./keycloak ./keycloak-19.0.1/conf
           ./keycloak-19.0.1/bin/kc.sh import --file ./realm-export.json
           ./keycloak-19.0.1/bin/kc.sh start-dev & mvn --batch-mode --update-snapshots verify
