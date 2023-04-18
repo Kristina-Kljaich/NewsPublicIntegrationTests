@@ -18,23 +18,38 @@ jobs:
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-      keycloak:
-        image: bitnami/keycloak:latest
-        volumes:
-          - realm-export.json:/tmp/realm-export.json
-        env:
-          KEYCLOAK_USER: user
-          KEYCLOAK_PASSWORD: bitnami
-          KC_DB: postgres
-          KC_DB_USERNAME: postgres
-          KC_DB_PASSWORD: postgres
-          KC_DB_URL: jdbc:postgresql://localhost:5432/postgres
-          JAVA_OPTS_APPEND: "-Dkeycloak.profile.feature.upload_scripts=enabled"
-          KEYCLOAK_IMPORT: /tmp/realm-export.json
-        ports:
-          - 8080:8080
-        command:
-          - start-dev --auto-build
+#      keycloak:
+#        image: bitnami/keycloak:latest
+#        volumes:
+#          - realm-export.json:/tmp/realm-export.json
+#        env:
+#          KEYCLOAK_USER: user
+#          KEYCLOAK_PASSWORD: bitnami
+#          KC_DB: postgres
+#          KC_DB_USERNAME: postgres
+#          KC_DB_PASSWORD: postgres
+#          KC_DB_URL: jdbc:postgresql://localhost:5432/postgres
+#          JAVA_OPTS_APPEND: "-Dkeycloak.profile.feature.upload_scripts=enabled"
+#          KEYCLOAK_IMPORT: /tmp/realm-export.json
+#        ports:
+#          - 8080:8080
+        keycloak:
+          image: quay.io/keycloak/keycloak:18.0
+          restart: on-failure
+          environment:
+            KEYCLOAK_ADMIN: admin
+            KEYCLOAK_ADMIN_PASSWORD: admin
+            KC_DB: postgres
+            KC_DB_USERNAME: postgres
+            KC_DB_PASSWORD: postgres
+            KC_DB_URL: jdbc:postgresql://localhost:5432/postgres
+          command:
+            - "start-dev"
+          depends_on:
+            database:
+              condition: service_healthy
+          ports:
+            - "8080:8080"
     steps:
 #      - name: Check conn 1
 #        run: telnet localhost 8080
