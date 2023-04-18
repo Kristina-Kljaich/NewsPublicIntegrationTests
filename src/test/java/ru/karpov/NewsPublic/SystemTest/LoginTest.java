@@ -35,6 +35,7 @@ public class LoginTest {
         WebDriverManager.chromedriver().setup();
         ChromeOptions ops = new ChromeOptions();
         ops.setBinary("/usr/bin/google-chrome-stable");
+        ops.addArguments("--disable-dev-shm-usage")
         ops.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(ops);
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
