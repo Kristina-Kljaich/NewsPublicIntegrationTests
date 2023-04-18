@@ -38,7 +38,7 @@ jobs:
 #        run: ls -la /home/runner/work/NewsPublicIntegrationTests/NewsPublicIntegrationTests/src/main/resources/static/images
       - name: Check conn 2
         run: |
-          cd /usr/bin/google-chrome
+          cd /usr/bin
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo dpkg -i google-chrome-stable_current_amd64.deb
       - uses: actions/checkout@v3
