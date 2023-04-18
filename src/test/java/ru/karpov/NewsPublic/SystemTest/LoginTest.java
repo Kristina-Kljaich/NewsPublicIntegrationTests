@@ -51,7 +51,7 @@ public class LoginTest {
     }
 
     @Test
-    public void userCanLoginByUsername() {
+    public void userCanLoginByUsername() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofMillis(5000));
         driver.get("http://localhost:8081/");
         driver.manage().window().setSize(new Dimension(1920, 1040));
@@ -66,6 +66,7 @@ public class LoginTest {
         driver.findElement(By.id("password")).sendKeys("secret");
         driver.findElement(By.id("password-confirm")).sendKeys("secret");
         driver.findElement(By.cssSelector(".pf-c-button")).click();
+        Thread.sleep(5000);
         System.out.println(driver.getCurrentUrl());
 //        Assertions.assertEquals(driver.getCurrentUrl(), "http://localhost:" + port + "/favicon.ico");
     }
