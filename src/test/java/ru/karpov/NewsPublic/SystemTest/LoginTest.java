@@ -57,14 +57,12 @@ public class LoginTest {
         driver.findElement(By.linkText("LogIn")).click();
         System.out.println(driver.getCurrentUrl());
 //        Assertions.assertTrue(driver.getCurrentUrl().matches("http://localhost:\\d*/auth/realms/SAT/protocol/openid-connect/auth[\\s\\S]*"));
-        driver.findElement(By.linkText("Register")).click();
-        System.out.println(driver.getCurrentUrl());
+
         //        Assertions.assertTrue(driver.getCurrentUrl().matches("http://localhost:\\d*/auth/realms/SAT/login-actions/registration\\?client_id=NewsPublic[\\s\\S]*"));
-        driver.findElement(By.id("email")).sendKeys("user@example.com");
-        driver.findElement(By.id("username")).sendKeys("example");
-        driver.findElement(By.id("password")).sendKeys("secret");
-        driver.findElement(By.id("password-confirm")).sendKeys("secret");
-        driver.findElement(By.cssSelector(".pf-c-button")).click();
+        driver.findElement(By.linkText("LogIn")).click();
+        driver.findElement(By.id("username")).sendKeys("janadoe");
+        driver.findElement(By.id("password")).sendKeys("s3cr3t");
+        driver.findElement(By.id("kc-login")).click();
         Thread.sleep(5000);
         System.out.println(driver.getCurrentUrl());
         driver.get("http://localhost:8081/");
