@@ -48,6 +48,9 @@
                     </div>
                 </div>
             </div>
+            <div th:if="${#request.isUserInRole('ADMIN')}">
+                <a th:href="@{/deleteNews/{id}(id=${news.getId()})}">Delete</a><br>
+            </div>
         </div>
     </div>
 </div>

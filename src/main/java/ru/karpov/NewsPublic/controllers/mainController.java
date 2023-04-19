@@ -47,6 +47,15 @@ public class mainController {
         return SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser");
     }
 
+    @GetMapping("/userListPage")
+    public String getUsersListPage(final Model model)
+    {
+        model.addAttribute("users", userRepo.findAll());
+        return "userListPage";
+    }
+
+
+
     @GetMapping("/")
     public String getMainPage(Model model) {
         List<News> news = new ArrayList<>();

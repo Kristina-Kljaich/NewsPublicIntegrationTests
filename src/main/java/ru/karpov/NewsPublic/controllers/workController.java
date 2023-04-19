@@ -45,6 +45,13 @@ public class workController {
         return SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser");
     }
 
+    @GetMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable("id") final String id)
+    {
+        userRepo.delete(userRepo.findUserById(id));
+        return "forward:/userListPage";
+    }
+
     @PostMapping("/addNews")
     public String addNews(@RequestParam("Title") String title, @RequestParam("text") String text,
                           @RequestParam("category") String category,
@@ -68,7 +75,7 @@ public class workController {
 
         if(file.getBytes().length > 0) {
             StringBuilder fileNames = new StringBuilder();
-            Path fileNameAndPath = Paths.get("/home/runner/",
+            Path fileNameAndPath = Paths.get("D:/temik/Work/Data/NewsPublic/NewsPublic/src/main/resources/static/images",
                     file.getOriginalFilename());
             fileNames.append(file.getOriginalFilename());
             Files.write(fileNameAndPath, file.getBytes());

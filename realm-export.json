@@ -46,6 +46,24 @@
   "roles": {
     "realm": [
       {
+        "id": "a54f3b89-a9eb-4d40-8356-39df37b5a263",
+        "name": "ADMIN",
+        "description": "",
+        "composite": false,
+        "clientRole": false,
+        "containerId": "d14cbe86-a0f8-4fb1-8466-f1e8424ed274",
+        "attributes": {}
+      },
+      {
+        "id": "8aa469c8-986c-46ee-93b3-cc537d865595",
+        "name": "USER",
+        "description": "",
+        "composite": false,
+        "clientRole": false,
+        "containerId": "d14cbe86-a0f8-4fb1-8466-f1e8424ed274",
+        "attributes": {}
+      },
+      {
         "id": "57693d25-c669-46d9-be15-f6b12f22dda8",
         "name": "offline_access",
         "description": "${role_offline-access}",
@@ -650,7 +668,7 @@
         "http://localhost:8081/*"
       ],
       "webOrigins": [
-        "http://localhost:8081"
+        "http://localhost:8081/"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -663,11 +681,17 @@
       "frontchannelLogout": true,
       "protocol": "openid-connect",
       "attributes": {
+        "tls-client-certificate-bound-access-tokens": "false",
         "oidc.ciba.grant.enabled": "false",
+        "backchannel.logout.session.required": "true",
+        "client_credentials.use_refresh_token": "false",
+        "acr.loa.map": "{}",
+        "require.pushed.authorization.requests": "false",
         "display.on.consent.screen": "false",
         "oauth2.device.authorization.grant.enabled": "false",
-        "backchannel.logout.session.required": "true",
-        "backchannel.logout.revoke.offline.tokens": "false"
+        "backchannel.logout.revoke.offline.tokens": "false",
+        "token.response.type.bearer.lower-case": "false",
+        "use.refresh.tokens": "true"
       },
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": true,
@@ -2223,6 +2247,27 @@
       ],
       "clientRoles": {
         "account": [
+          "USER",
+          "view-profile",
+          "manage-account"
+        ]
+      }
+    },
+    {
+      "username": "admin",
+      "email": "admin.admin@baeldung.com",
+      "firstName": "admin",
+      "lastName": "admin",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "s3cr3t"
+        }
+      ],
+      "clientRoles": {
+        "account": [
+          "ADMIN",
           "view-profile",
           "manage-account"
         ]
