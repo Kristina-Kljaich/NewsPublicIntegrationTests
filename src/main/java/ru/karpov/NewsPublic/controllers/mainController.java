@@ -272,6 +272,7 @@ public class mainController {
                                     Model model) {
         userInfo user = userRepo.findUserByName(username);
         model.addAttribute("image", user.getImageUrl());
+        model.addAttribute("nullError", 0);
         model.addAttribute("name", user.getName());
         model.addAttribute("age", user.getAge());
         model.addAttribute("description", user.getDescription());
