@@ -60,7 +60,7 @@ public class LoginTest {
 
         //        Assertions.assertTrue(driver.getCurrentUrl().matches("http://localhost:\\d*/auth/realms/SAT/login-actions/registration\\?client_id=NewsPublic[\\s\\S]*"));
 //        driver.findElement(By.linkText("LogIn")).click();
-        driver.findElement(By.id("username")).sendKeys("janadoe");
+        driver.findElement(By.id("username")).sendKeys("janedoe");
         driver.findElement(By.id("password")).sendKeys("s3cr3t");
         driver.findElement(By.id("kc-login")).click();
         Thread.sleep(5000);
