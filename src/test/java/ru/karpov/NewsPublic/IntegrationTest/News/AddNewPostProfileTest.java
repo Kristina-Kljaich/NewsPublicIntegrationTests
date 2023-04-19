@@ -35,7 +35,7 @@ public class AddNewPostProfileTest extends BaseTest {
         Assertions.assertEquals("0.0", document.select("label.fs-5.text-muted.text-center").get(3).text());
         Assertions.assertEquals(1, document.select("a[href*=/newsPage/]").size());
         // Выбираем категорию Sport
-        res = mvc.perform(post("http://localhost:" + port + "/reloadProfilePage")
+        res = mvc.perform(post("http://localhost:" + port + "/reloadProfilePage/Test1")
                         .param("category", "Sport"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("profilePage"))
@@ -58,7 +58,7 @@ public class AddNewPostProfileTest extends BaseTest {
         Assertions.assertEquals("Bla", document.select("p.h3").text());
 
         // Выбираем категорию Culture
-        res = mvc.perform(post("http://localhost:" + port + "/reloadProfilePage")
+        res = mvc.perform(post("http://localhost:" + port + "/reloadProfilePage/Test1")
                         .param("category", "Culture"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("profilePage"))
