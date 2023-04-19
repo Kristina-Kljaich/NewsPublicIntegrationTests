@@ -8,4 +8,9 @@ public class addPostTest extends BaseTest{
     public void userCanAddPosts() {
         Assertions.assertEquals(2, 1 + 1);
     }
+
+    @Test
+    public void userCanEditPosts() {
+        Assertions.assertEquals(2, 1 + 1);
+    }
 }

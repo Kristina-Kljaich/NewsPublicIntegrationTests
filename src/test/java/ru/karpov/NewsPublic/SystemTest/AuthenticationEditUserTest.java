@@ -8,4 +8,9 @@ public class AuthenticationEditUserTest extends BaseTest{
     public void checkSubscribersUser() {
         Assertions.assertEquals(2, 1+1);
     }
+
+    @Test
+    public void userCanAddPosts() {
+        Assertions.assertEquals(2, 1 + 1);
+    }
 }

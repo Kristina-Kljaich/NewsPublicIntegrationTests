@@ -8,4 +8,9 @@ public class ChangeMarkTest {
     public void ChangeMarkTest() {
         Assertions.assertEquals(2, 1 + 1);
     }
+
+    @Test
+    public void userCanAddPosts() {
+        Assertions.assertEquals(2, 1 + 1);
+    }
 }

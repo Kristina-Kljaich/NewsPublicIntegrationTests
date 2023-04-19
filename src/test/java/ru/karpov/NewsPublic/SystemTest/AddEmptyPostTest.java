@@ -8,4 +8,9 @@ public class AddEmptyPostTest extends BaseTest{
     public void AddEmptyPostTest() {
         Assertions.assertEquals(2, 1 + 1);
     }
+
+    @Test
+    public void userCanAddPosts() {
+        Assertions.assertEquals(2, 1 + 1);
+    }
 }

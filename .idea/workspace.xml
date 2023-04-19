@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="899b15f8-190f-44d6-bef6-08582e6b7c43" name="Changes" comment="Init commit of project" />
+    <list default="true" id="899b15f8-190f-44d6-bef6-08582e6b7c43" name="Changes" comment="add test">
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/karpov/NewsPublic/SystemTest/AddPostImageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/karpov/NewsPublic/SystemTest/AddPostImageTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/karpov/NewsPublic/SystemTest/AuthenticationEditUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/karpov/NewsPublic/SystemTest/AuthenticationEditUserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/karpov/NewsPublic/SystemTest/NoAuthenticationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/karpov/NewsPublic/SystemTest/NoAuthenticationTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

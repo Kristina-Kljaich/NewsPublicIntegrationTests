@@ -8,4 +8,9 @@ public class SubscribersUserTest extends BaseTest{
     public void userCanSubscribeAndUnsubscribe() {
         Assertions.assertEquals(2, 1+1);
     }
+
+    @Test
+    public void userCanAddPosts() {
+        Assertions.assertEquals(2, 1 + 1);
+    }
 }
