@@ -66,4 +66,4 @@ jobs:
           cp ./keycloak.conf ./keycloak-19.0.1/conf
           mkdir -p ./keycloak-19.0.1/data/import
           cp ./realm-export.json ./keycloak-19.0.1/data/import
-          ./keycloak-19.0.1/bin/kc.sh start-dev --db-url-host=jdbc:postgresql://localhost:5432/postgres --import-realm & mvn test
+          ./keycloak-19.0.1/bin/kc.sh start-dev --db-url-host=jdbc:postgresql://localhost:5432/postgres --import-realm & mvn --batch-mode --update-snapshots verify
