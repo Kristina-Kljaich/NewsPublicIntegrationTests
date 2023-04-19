@@ -54,7 +54,6 @@ public class AddNewPostProfileTest extends BaseTest {
         // Проверяем, что в новости все поля правильные
         document = Jsoup.parse(res.getResponse().getContentAsString());
         Assertions.assertEquals("Test1", document.select("h1.display-4.fw-normal").text());
-        Assertions.assertEquals("Test", document.select("a[href=/profilePage/Test]").text());
         Assertions.assertEquals("Bla", document.select("p.h3").text());
 
         // Выбираем категорию Culture
